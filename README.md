@@ -9,3 +9,11 @@
 >统一的调用方式：
 
     starmove(dom,{calss_attr_name: parameter},time,callback);
+    
+    
+    
+    
+    
+[JS交流请移步这里](http://www.huanghanlian.com/report/)。
+
+欢迎Star。
