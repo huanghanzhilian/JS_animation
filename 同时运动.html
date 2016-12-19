@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同时运动</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        ul li{
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            margin-bottom: 20px;
+            border: solid 3px #000;
+            filter: alpha(opacity:30);
+            opacity: 0.3;
+        }
+    </style>
+    <script type="text/javascript" src="js/move.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var li1 = document.getElementById("li1");
+
+            li1.onmouseover = function() {
+                starmove(li1, {width: 201, height: 200, opacity: 100},50,function(){
+                    starmove(li1,{width: 501})
+                });
+            }
+            li1.onmouseout = function() {
+                starmove(li1, {width: 200,height: 100, opacity: 30},100)
+            }
+
+        };
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="li1"></li>
+    </ul>
+</body>
+</html>

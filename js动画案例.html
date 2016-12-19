@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js动画案例</title>
+	<style type="text/css">
+	#move {
+		width: 300px;
+		height: 200px;
+		background: #ddd;
+		border: solid 1px #ccc;
+		margin: 10px auto;
+	}
+	#move a {
+		display: inline-block;
+		width: 58px;
+		height: 25px;
+		border: solid 1px #ccc;
+		background-color: #fff;
+		border-radius: 3px;
+		text-align: center;
+		margin: 10px 17px;
+		position: relative;
+		color: #9c9c9c;
+		font-size: 12px;
+		text-decoration: none;
+		line-height: 12px;
+		overflow: hidden;
+		padding-top: 40px;
+		padding-bottom: 10px;
+	}
+	#move a i {
+		position: absolute;
+		top: 15px;
+		left: 0px;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		filter: alpha(opacity:100);
+		opacity: 1;
+	}
+	#move a:hover {
+		color: #f00;
+	}
+	#move img {
+		border: none;
+		width: 50%;
+	}
+	</style>
+	<script type="text/javascript" src="js/move.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var move = document.getElementById("move")
+			var alist = move.getElementsByTagName("a");
+			for (var i = 0; i < alist.length; i++) {
+				alist[i].onmouseenter = function() {
+					var _this = this.getElementsByTagName("i")[0];
+					starmove(_this, {top: -15,opacity: 0}, function() {
+						_this.style.top = 30 + 'px';
+						starmove(_this, {top: 15,opacity: 100})
+					})
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="move">
+		<a href="#"><i><img src="images/a1.png" alt=""></i><p>电影</p></a>
+		<a href="#"><i><img src="images/a2.png" alt=""></i><p>电影</p></a>
+		<a href="#"><i><img src="images/a3.png" alt=""></i><p>电影</p></a>
+		<a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+        <a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+        <a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+	</div>
+</body>
+</html>

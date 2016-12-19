@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任意值属性</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        ul li{
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            margin-bottom: 20px;
+            border: solid 3px #000;
+            filter: alpha(opacity:30);
+            opacity: 0.3;
+        }
+    </style>
+    <script type="text/javascript" src="js/move.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var li1 = document.getElementById("li1");
+            var li2 = document.getElementById("li2");
+
+            li1.onmouseover = function() {
+                starmove(this, {width:400})
+            }
+            li1.onmouseout = function() {
+                starmove(this, {width:200})
+            }
+
+            li2.onmouseover = function() {
+                starmove(this, {height:400})
+            }
+            li2.onmouseout = function() {
+                starmove(this, {height:100})
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="li1"></li>
+        <li id="li2"></li>
+    </ul>
+</body>
+</html>

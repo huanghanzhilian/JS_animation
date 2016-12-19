@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_animation</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .main {
+        width: 1000px;
+        margin: 20px auto;
+        overflow: hidden;
+    }
+    .main_list {
+        position: relative;
+        height: auto;
+    }
+    #div1 {
+        width: 200px;
+        height: 200px;
+        background: #ccc;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        margin-left: -200px;
+    }
+    #div1 span {
+        width: 20px;
+        height: 50px;
+        background: #999;
+        position: absolute;
+        left: 200px;
+        top: 75px;
+    }
+    .div_po {
+        width: 200px;
+        height: 200px;
+        background: #ccc;
+        filter: alpha(opacity:30);
+        opacity: 0.3;
+    }
+    ul, li {
+        list-style: none;
+    }
+    ul#div3 li {
+        width: 200px;
+        height: 100px;
+        background: #ccc;
+        margin-bottom: 20px;
+        filter: alpha(opacity:30);
+        opacity: 0.3;
+    }
+    #div5 li {
+        width: 200px;
+        height: 200px;
+        background: red;
+        filter: alpha(opacity:30);
+        opacity: 0.3;
+        margin: 10px;
+        float: left;
+    }
+    #move {
+        width: 300px;
+        height: 200px;
+        background: #ddd;
+        border: solid 1px #ccc;
+        margin: 10px auto;
+    }
+    #move a {
+        display: inline-block;
+        width: 58px;
+        height: 25px;
+        border: solid 1px #ccc;
+        background-color: #fff;
+        border-radius: 3px;
+        text-align: center;
+        margin: 10px 17px;
+        position: relative;
+        color: #9c9c9c;
+        font-size: 12px;
+        text-decoration: none;
+        line-height: 30px;
+        overflow: hidden;
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    #move a i {
+        position: absolute;
+        top: 15px;
+        left: 0px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        filter: alpha(opacity:100);
+        opacity: 1;
+    }
+    #move a:hover {
+        color: #f00;
+    }
+    #move img {
+        border: none;
+        width: 50%;
+    }
+    </style>
+    <script type="text/javascript" src="js/move.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var odiv = document.getElementById("div1");
+            var odiV2 = document.getElementById("div2");
+            var odiV3 = document.getElementById("div3").getElementsByTagName("li");
+            var odiV4 = document.getElementById("div4");
+            //r odiV5 = document.getElementById("div5").getElementsByTagName("li");
+            odiv.onmouseover = function() {
+                starmove(odiv,{left:200});
+            };
+            odiv.onmouseout = function() {
+                starmove(odiv,{left:0});
+            };
+
+            odiV2.onmouseover = function() {
+                starmove(odiV2,{opacity:100});
+            };
+            odiV2.onmouseout = function() {
+                starmove(odiV2,{opacity:30});
+            };
+            for (var i = 0; i < odiV3.length; i++) {
+                odiV3[i].onmouseover = function() {
+                    starmove(this, {width:400,opacity:100});
+                }
+                odiV3[i].onmouseout = function() {
+                    starmove(this, {width:200,opacity:30});
+                }
+            }
+
+            odiV4.onmouseover = function() {
+                starmove(odiV4,{opacity:100,width:400},function(){
+                    starmove(odiV4,{height:400})
+                });
+            };
+            odiV4.onmouseout = function() {
+                starmove(odiV4,{opacity:30,width:200},function(){
+                    starmove(odiV4,{height:200})
+                });
+            };
+
+
+            var move = document.getElementById("move")
+            var alist = move.getElementsByTagName("a");
+            for (var i = 0; i < alist.length; i++) {
+                alist[i].onmouseenter = function() {
+                    var _this = this.getElementsByTagName("i")[0];
+                    starmove(_this, {top: -15,opacity: 0},10, function() {
+                        _this.style.top = 30 + 'px';
+                        starmove(_this, {top: 15,opacity: 100},10)
+                    })
+                }
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <a href="https://github.com/mumuy/widget" target="_blank">项目地址</a>
+    <!-- <a href="/">返回首页</a> -->
+</div>
+<div class="main">
+    <div class="main_list">
+        <div id="move">
+            <a href="#"><i><img src="images/a1.png" alt=""></i><p>电影</p></a>
+            <a href="#"><i><img src="images/a2.png" alt=""></i><p>电影</p></a>
+            <a href="#"><i><img src="images/a3.png" alt=""></i><p>电影</p></a>
+            <a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+            <a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+            <a href="#"><i><img src="images/a4.png" alt=""></i><p>电影</p></a>
+        </div>
+
+        <div class="code">
+            <p>
+                多物体运动同多个效果
+            </p>
+            <p>starmove(_this, {top: -15,opacity: 0},10, function() {
+                        _this.style.top = 30 + 'px';
+                        starmove(_this, {top: 15,opacity: 100},10)
+                    })</p>
+        </div>
+
+        <div id="div1">
+            <span id="share">分享</span>
+        </div>
+        <div class="code">
+            <p>
+                速度缓冲
+            </p>
+            <p>starmove(this,{left: 0},30)</p>
+            <p>starmove(this,{left: -200},30)</p>
+        </div>
+        <div id="div2" class="div_po"></div>
+
+        <div class="code">
+            <p>
+                透明渐变
+            </p>
+            <p>starmove(this, {opacity:100});</p>
+            <p>starmove(this, {opacity:30});</p>
+        </div>
+
+        <div id="div4" class="div_po"></div>
+
+        <div class="code">
+            <p>
+                链式运动
+            </p>
+            <p>starmove(this,{opacity:100,width:400},function(){
+                    starmove(this,{height:400})
+                });</p>
+            <p>starmove(this,{opacity:30,width:200},function(){
+                    starmove(this,{height:200})
+                });</p>
+        </div>
+        <ul id="div3">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <div>
+
+        <div class="code">
+            <p>
+                多物体链式运动
+            </p>
+            <p>odiV3[i].onmouseover = function() {
+                    starmove(this, {width:400,opacity:100});
+                }
+                </p>
+            <p>odiV3[i].onmouseout = function() {
+                    starmove(this, {width:200,opacity:30});
+                }</p>
+        </div>
+
+        </div>
+
+        <div class="example">
+                <div class="call">
+                    <h1>调用方法：</h1>
+                    <p>starmove(dom,{calss_attr_name: parameter},time,callback);</p>
+                </div>
+                <h2>options参数</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="150">参数</th>
+                            <th width="80">方法</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>dom</td>
+                            <td>'this'</td>
+                            <td>要进行操作的dom节点</td>
+                        </tr>
+                        <tr>
+                            <td>calss_attr_name</td>
+                            <td>{top: -15,opacity: 0}</td>
+                            <td>要进行的动作,多个效果用英文逗号分隔</td>
+                        </tr>
+                        <tr>
+                            <td>time</td>
+                            <td>30</td>
+                            <td>动画时间</td>
+                        </tr>
+                        <tr>
+                            <td>callback</td>
+                            <td>function(){
+                    starmove(odiV4,{height:400})
+                }</td>
+                            <td>回调函数</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+</div>
+</body>
+</html>
